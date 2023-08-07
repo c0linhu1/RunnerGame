@@ -596,8 +596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3af2793c64ddac4b8829393b25d7611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 150
-  started: 1
+  jumpForce: 200
   isOnGround: 1
 --- !u!54 &1376012770
 Rigidbody:
@@ -613,7 +612,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &1376012771
 BoxCollider:
