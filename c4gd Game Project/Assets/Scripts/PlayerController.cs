@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
     
@@ -17,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool firstjump = false;
     public bool doublejump = false;
+    
+    public bool wallslide = false;
 
     // public bool started = false;
     
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         isOnGround = true;
         firstjump = false;
         doublejump = false;
+        wallslide = false;
     }
 
     void Update()
@@ -56,11 +60,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
+            speed = 15;
+            wallslide = false;
+            // attachedRigidbody.useGravity = true;
             if (doublejump || firstjump) {
             isOnGround = true;
             doublejump = false;
             firstjump = false;
             }
+        } 
+        else if (other.gameObject.CompareTag("Wall")) {
+            wallslide = true;
+            // attachedRigidbody.useGravity = false;
+            speed = 20;
         }
     }
 }
