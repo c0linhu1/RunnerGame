@@ -6,14 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     
     private float speed = 15;
+    
 
     private float forwardInput;
     private float horizontalInput;
 
     private Rigidbody rb; 
-    public float jumpForce = 150;
+    public float jumpForce = 180;
 
     public bool isOnGround = true;
+    public bool firstjump = false;
+    public bool doublejump = false;
 
     // public bool started = false;
     
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         isOnGround = true;
+        firstjump = false;
+        doublejump = false;
     }
 
     void Update()
@@ -35,15 +40,27 @@ public class PlayerController : MonoBehaviour
         //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
         // }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            if (isOnGround) {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            firstjump = true;
+            } else if (firstjump) {
+                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                firstjump = false;
+                doublejump = true;
+            }
         }
+        
     }
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
+            if (doublejump || firstjump) {
             isOnGround = true;
+            doublejump = false;
+            firstjump = false;
+            }
         }
     }
 }
