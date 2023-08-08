@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool wallSlideGravityEnabled = false;
 
     public AudioSource jump;
+    public AudioSource jump2;
 
     public float accelerationForce = 2500f;
 
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private bool hasCollided = false;
 
     // public float timerfordisappear = 0.5f;
-    // public AudioSource jump2;
+
 
     // public bool started = false;
     
@@ -76,8 +77,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-            jump = GetComponent<AudioSource>();
-            //jump.Play();
+            
+            jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             // anim.SetTrigger("Jumping");
             isOnGround = false;
@@ -85,7 +86,10 @@ public class PlayerController : MonoBehaviour
   
             } else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
-                // jump.Play();
+                jump.Pause();
+
+                jump2.Play();
+                jump.Play();
                 firstjump = false;
                 doublejump = true;
             }
