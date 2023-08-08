@@ -5,29 +5,28 @@ using UnityEngine;
 public class RotatePlane : MonoBehaviour
 {
 
-    public float timerforrotate = 1.5f;
-    public float timerotating = 1f;
+    public float waittime = 1.300000f;
+    public float timerotating = 1.000000f;
+    public float rotationdegree = 180.000000f;
+    public float timer = 0.000000f;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-        if (timerforrotate > 0) {
-            timerforrotate -= Time.deltaTime;
-            timerotating = 1f;
-        } else if (timerforrotate <= 0) {
-            if (timerotating > 0) {
-                timerotating -= Time.deltaTime;
-                transform.Rotate(0f, 0f, 2f);
-            } else if (timerotating <= 0) {
-                timerforrotate = 1.5f;
-            }
+        timer += Time.deltaTime;
+
+        // reset the timer after it goes past total time
+        while (timer > timerotating + waittime) {
+            timer -= timerotating + waittime;
         }
+
+        // rotate the object
+        if (timer < timerotating) {
+            transform.Rotate(0.0f, 0.0f, Time.deltaTime * rotationdegree / timerotating);
+        }   
     }
 }
