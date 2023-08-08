@@ -21,9 +21,8 @@ public class PlayerController : MonoBehaviour
     
     public bool wallslide = false;
 
-    public AudioClip crashSFX;
-    public AudioClip jumpSFX;
-    public AudioSource audioSource;
+
+    public AudioSource jump;
 
     // public bool started = false;
     
@@ -55,11 +54,14 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
+            jump = GetComponent<AudioSource>();
+            jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             firstjump = true;
-            audioSource.PlayOneShot(jumpSFX, 1.5f);
+  
             } else if (firstjump) {
+                jump.Play();
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 firstjump = false;
                 doublejump = true;
