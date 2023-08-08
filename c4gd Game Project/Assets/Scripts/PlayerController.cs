@@ -6,20 +6,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    public float speed = 40;
+    public float speed = 20;
     
 
     private float forwardInput;
     private float horizontalInput;
 
     private Rigidbody rb; 
-    public float jumpForce = 180;
-    public float doublejumpForce = 10;
+    public float jumpForce = 20;
+    public float doublejumpForce = 12.5f;
 
     public bool isOnGround = true;
     public bool firstjump = false;
     public bool doublejump = false;
-    
+    private Animator anim;
     public bool wallslide = false;
 
 
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         doublejump = false;
         wallslide = false;
         rb.useGravity = true;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -57,8 +58,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
             jump = GetComponent<AudioSource>();
-            jump.Play();
+            //jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("Jumping");
             isOnGround = false;
             firstjump = true;
   
@@ -85,7 +87,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
-            speed = 40;
             wallslide = false;
             rb.useGravity = true;
             // attachedRigidbody.useGravity = true;
