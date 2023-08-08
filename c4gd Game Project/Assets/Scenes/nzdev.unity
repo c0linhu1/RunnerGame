@@ -1408,7 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3af2793c64ddac4b8829393b25d7611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 40
   jumpForce: 180
   isOnGround: 1
   firstjump: 0

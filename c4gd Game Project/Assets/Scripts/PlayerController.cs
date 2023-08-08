@@ -64,11 +64,19 @@ public class PlayerController : MonoBehaviour
                 firstjump = false;
                 doublejump = true;
             }
-
-            if (!wallslide) {
-                rb.useGravity = true;
-            }
         }
+
+        if (!wallslide) {
+            rb.useGravity = true;
+        }
+
+        // if (transform.position.x <= 8.0f || transform.position.x >= -8.0f) {
+        //     wallslide = false;
+        //     rb.useGravity = true;
+        // } else {
+        //     wallslide = true;
+        //     rb.useGravity = false;
+        // }
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -92,6 +100,8 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
             rb.AddForce(Vector3.up * 300, ForceMode.Impulse);
+            firstjump = false;
+            doublejump = false;
         }
         // else if (other.gameObject.CompareTag("PushForward")) {
         //     transform.Translate(horizontalInput * 10 * Vector3.forward);
@@ -102,8 +112,18 @@ public class PlayerController : MonoBehaviour
 
         // while(!other.gameObject.CompareTag("Wall")) {
         //     wallslide = false;
-        // }
+        // } 
+        // Don't use this code! It will make Unity CRASH!
     }
+
+    // private void OnCollisionStay(Collision other)
+    // {
+    //     // Debug-draw all contact points and normals
+    //     if (other.gameObject.CompareTag("Wall"))
+    //     {
+    //         wallslide = false;
+    //     } 
+    // }
 
 }
 
