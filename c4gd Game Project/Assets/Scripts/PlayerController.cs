@@ -15,14 +15,14 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb; 
     public float jumpForce = 180;
-    public float doublejumpForce = 100  ;
+    public float doublejumpForce = 100;
 
     public bool isOnGround = true;
     public bool firstjump = false;
     public bool doublejump = false;
     private Animator anim;
     public bool wallslide = false;
-    private bool isWallSliding = false;
+   // private bool isWallSliding = false;
 
     public bool wallSlideGravityEnabled = false;
 
@@ -30,7 +30,13 @@ public class PlayerController : MonoBehaviour
 
     public float accelerationForce = 2500f;
 
+    public float bounceForce = 200f;
+
     public bool isPushingForward = false;
+
+    private bool hasCollided = false;
+
+    // public float timerfordisappear = 0.5f;
     // public AudioSource jump2;
 
     // public bool started = false;
@@ -60,6 +66,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = nextV;
         }
 
+        if (transform.position.y < 2) {
+            Vector3 newPosition = new Vector3(transform.position.x, 2f, transform.position.z);
+            transform.position = newPosition; 
+        }
         // if(started) {
         //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
         // }
@@ -69,7 +79,7 @@ public class PlayerController : MonoBehaviour
             jump = GetComponent<AudioSource>();
             //jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anim.SetTrigger("Jumping");
+            // anim.SetTrigger("Jumping");
             isOnGround = false;
             firstjump = true;
   
@@ -80,6 +90,13 @@ public class PlayerController : MonoBehaviour
                 doublejump = true;
             }
         }
+        // if (collided){        
+        //     if (timerfordisappear > 0) {
+        //         timerfordisappear -= Time.deltaTime;
+        //     } else {
+        //         Destroy(other.gameObject);
+        //     }
+        // }
 
     //    if (wallslide && !isOnGround)
     //     {
@@ -125,7 +142,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
-            rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             firstjump = false;
             doublejump = false;
         }
@@ -135,6 +152,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("RotateObstacle")) {
             print("Game Over");
+        }
+        else if (!hasCollided && other.gameObject.CompareTag("DisappearPlane")) {
+            hasCollided = true;
+            StartCoroutine(DisappearAfterDelay(other.gameObject));
         }
 
         // while(!other.gameObject.CompareTag("Wall")) {
@@ -161,6 +182,13 @@ public class PlayerController : MonoBehaviour
         } else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = false;
         }
+    }
+
+    private IEnumerator DisappearAfterDelay(GameObject other)
+    {
+        yield return new WaitForSeconds(0.5f); 
+
+        other.gameObject.SetActive(false);
     }
 }
 

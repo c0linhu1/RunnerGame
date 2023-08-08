@@ -9,6 +9,7 @@ TagManager:
   - BounceUp
   - PushForward
   - RotateObstacle
+  - DisappearPlane
   layers:
   - Default
   - TransparentFX
