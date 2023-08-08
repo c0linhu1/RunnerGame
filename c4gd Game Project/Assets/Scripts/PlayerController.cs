@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
 
     public AudioSource jump;
+    public AudioSource jump2;
 
     // public bool started = false;
     
@@ -61,7 +62,8 @@ public class PlayerController : MonoBehaviour
             firstjump = true;
   
             } else if (firstjump) {
-                jump.Play();
+                jump2 = GetComponent<AudioSource>();
+                jump2.Play();
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 firstjump = false;
                 doublejump = true;
