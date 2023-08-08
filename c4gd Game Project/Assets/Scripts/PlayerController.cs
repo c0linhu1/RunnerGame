@@ -22,9 +22,8 @@ public class PlayerController : MonoBehaviour
     
     public bool wallslide = false;
 
-    public AudioClip crashSFX;
-    public AudioClip jumpSFX;
-    public AudioSource audioSource;
+
+    public AudioSource jump;
 
     // public bool started = false;
     
@@ -35,6 +34,7 @@ public class PlayerController : MonoBehaviour
         firstjump = false;
         doublejump = false;
         wallslide = false;
+        rb.useGravity = true;
     }
 
     void Update()
@@ -55,22 +55,38 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
+            jump = GetComponent<AudioSource>();
+            jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             firstjump = true;
-            audioSource.PlayOneShot(jumpSFX, 1.5f);
+  
             } else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
+                jump.Play();
                 firstjump = false;
                 doublejump = true;
             }
         }
+
+        if (!wallslide) {
+            rb.useGravity = true;
+        }
+
+        // if (transform.position.x <= 8.0f || transform.position.x >= -8.0f) {
+        //     wallslide = false;
+        //     rb.useGravity = true;
+        // } else {
+        //     wallslide = true;
+        //     rb.useGravity = false;
+        // }
     }
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
-            speed = 15;
+            speed = 40;
             wallslide = false;
+            rb.useGravity = true;
             // attachedRigidbody.useGravity = true;
             if (doublejump || firstjump) {
             isOnGround = true;
@@ -84,9 +100,32 @@ public class PlayerController : MonoBehaviour
             speed = 35;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
+            rb.useGravity = true;
             rb.AddForce(Vector3.up * 300, ForceMode.Impulse);
+            firstjump = false;
+            doublejump = false;
         }
+        // else if (other.gameObject.CompareTag("PushForward")) {
+        //     transform.Translate(horizontalInput * 10 * Vector3.forward);
+        // }
+        else if (other.gameObject.CompareTag("RotateObstacle")) {
+            print("Game Over");
+        }
+
+        // while(!other.gameObject.CompareTag("Wall")) {
+        //     wallslide = false;
+        // } 
+        // Don't use this code! It will make Unity CRASH!
     }
+
+    // private void OnCollisionStay(Collision other)
+    // {
+    //     // Debug-draw all contact points and normals
+    //     if (other.gameObject.CompareTag("Wall"))
+    //     {
+    //         wallslide = false;
+    //     } 
+    // }
 
 }
 
