@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         firstjump = false;
         doublejump = false;
         wallslide = false;
+        rb.useGravity = true;
     }
 
     void Update()
@@ -63,13 +64,18 @@ public class PlayerController : MonoBehaviour
                 firstjump = false;
                 doublejump = true;
             }
+
+            if (!wallslide) {
+                rb.useGravity = true;
+            }
         }
     }
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
-            speed = 15;
+            speed = 40;
             wallslide = false;
+            rb.useGravity = true;
             // attachedRigidbody.useGravity = true;
             if (doublejump || firstjump) {
             isOnGround = true;
@@ -81,10 +87,22 @@ public class PlayerController : MonoBehaviour
             wallslide = true;
             // attachedRigidbody.useGravity = false;
             speed = 80;
+            rb.useGravity = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
+            rb.useGravity = true;
             rb.AddForce(Vector3.up * 300, ForceMode.Impulse);
         }
+        // else if (other.gameObject.CompareTag("PushForward")) {
+        //     transform.Translate(horizontalInput * 10 * Vector3.forward);
+        // }
+        else if (other.gameObject.CompareTag("RotateObstacle")) {
+            print("Game Over");
+        }
+
+        // while(!other.gameObject.CompareTag("Wall")) {
+        //     wallslide = false;
+        // }
     }
 
 }
