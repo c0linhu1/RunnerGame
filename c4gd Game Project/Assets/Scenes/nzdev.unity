@@ -1680,7 +1680,10 @@ MonoBehaviour:
   wallslide: 0
   wallSlideGravityEnabled: 0
   jump: {fileID: 1376012772}
+<<<<<<< HEAD
   jump2: {fileID: 1376012773}
+=======
+>>>>>>> f748e9a95bf6be0080682b629e9be09212e55a9d
   accelerationForce: 2500
   bounceForce: 200
   isPushingForward: 0
