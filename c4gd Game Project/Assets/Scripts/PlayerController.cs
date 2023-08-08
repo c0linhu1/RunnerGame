@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    private float speed = 15;
+    public float speed = 40;
     
 
     private float forwardInput;
@@ -41,8 +41,12 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
-        transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
+        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
+        // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
+
+        Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
+        //print(nextV);
+        rb.velocity = nextV;
 
         // if(started) {
         //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -60,7 +64,6 @@ public class PlayerController : MonoBehaviour
                 doublejump = true;
             }
         }
-        
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -77,9 +80,13 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall")) {
             wallslide = true;
             // attachedRigidbody.useGravity = false;
-            speed = 20;
+            speed = 80;
+        }
+        else if (other.gameObject.CompareTag("BounceUp")) {
+            rb.AddForce(Vector3.up * 300, ForceMode.Impulse);
         }
     }
+
 }
 
 
