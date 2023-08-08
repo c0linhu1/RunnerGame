@@ -1678,7 +1678,7 @@ MonoBehaviour:
   doublejump: 0
   wallslide: 0
   wallSlideGravityEnabled: 0
-  jump: {fileID: 0}
+  jump: {fileID: 1376012772}
   accelerationForce: 2500
   bounceForce: 200
   isPushingForward: 0
