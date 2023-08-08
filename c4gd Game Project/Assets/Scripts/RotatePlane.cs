@@ -4,43 +4,30 @@ using UnityEngine;
 
 public class RotatePlane : MonoBehaviour
 {
-    public float rotationDuration = 1.0f;
 
-    private Quaternion startRotation;
-    private Quaternion targetRotation;
-    private float rotationTime = 0.0f;
-    private bool isRotating = false;
+    public float timerforrotate = 1.5f;
+    public float timerotating = 1f;
 
+    // Start is called before the first frame update
     void Start()
     {
-        // 初始化目标旋转角度
-        startRotation = transform.Rotation;
-        targetRotation = Quaternion.Euler(rotation.eulerAngles + Vector3.up * 180.0f);
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (isRotating)
-        {
-            rotationTime += Time.deltaTime;
-            transform.rotation = Quaternion.Lerp(startRotation, targetRotation, rotationTime / rotationDuration);
-
-            if (rotationTime >= rotationDuration)
-            {
-                isRotating = false;
+        
+        if (timerforrotate > 0) {
+            timerforrotate -= Time.deltaTime;
+            timerotating = 1f;
+        } else if (timerforrotate <= 0) {
+            if (timerotating > 0) {
+                timerotating -= Time.deltaTime;
+                transform.Rotate(0f, 0f, 2f);
+            } else if (timerotating <= 0) {
+                timerforrotate = 1.5f;
             }
         }
-
-        if (!isRotating)
-        {
-            StartRotation();
-        }
-    }
-
-    private void StartRotation()
-    {
-        rotationTime = 0.0f;
-        isRotating = true;
     }
 }
-
