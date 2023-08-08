@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
     public float bounceForce = 200f;
 
     public bool isPushingForward = false;
+
+    private bool hasCollided = false;
+
+    // public float timerfordisappear = 0.5f;
     // public AudioSource jump2;
 
     // public bool started = false;
@@ -86,6 +90,13 @@ public class PlayerController : MonoBehaviour
                 doublejump = true;
             }
         }
+        // if (collided){        
+        //     if (timerfordisappear > 0) {
+        //         timerfordisappear -= Time.deltaTime;
+        //     } else {
+        //         Destroy(other.gameObject);
+        //     }
+        // }
 
     //    if (wallslide && !isOnGround)
     //     {
@@ -142,6 +153,10 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("RotateObstacle")) {
             print("Game Over");
         }
+        else if (!hasCollided && other.gameObject.CompareTag("DisappearPlane")) {
+            hasCollided = true;
+            StartCoroutine(DisappearAfterDelay());
+        }
 
         // while(!other.gameObject.CompareTag("Wall")) {
         //     wallslide = false;
@@ -167,6 +182,13 @@ public class PlayerController : MonoBehaviour
         } else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = false;
         }
+    }
+
+    private IEnumerator DisappearAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f); 
+
+        Destroy(gameObject); 
     }
 }
 
