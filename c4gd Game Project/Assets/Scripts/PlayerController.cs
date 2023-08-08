@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (!hasCollided && other.gameObject.CompareTag("DisappearPlane")) {
             hasCollided = true;
-            StartCoroutine(DisappearAfterDelay());
+            StartCoroutine(DisappearAfterDelay(other.gameObject));
         }
 
         // while(!other.gameObject.CompareTag("Wall")) {
@@ -184,11 +184,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator DisappearAfterDelay()
+    private IEnumerator DisappearAfterDelay(GameObject other)
     {
         yield return new WaitForSeconds(0.5f); 
 
-        Destroy(gameObject); 
+        other.gameObject.SetActive(false);
     }
 }
 
