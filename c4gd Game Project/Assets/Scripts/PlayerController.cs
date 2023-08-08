@@ -62,6 +62,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = nextV;
         }
 
+        if (transform.position.y < 2) {
+            Vector3 newPosition = new Vector3(transform.position.x, 2f, transform.position.z);
+            transform.position = newPosition; 
+        }
         // if(started) {
         //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
         // }
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour
             jump = GetComponent<AudioSource>();
             //jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anim.SetTrigger("Jumping");
+            // anim.SetTrigger("Jumping");
             isOnGround = false;
             firstjump = true;
   
