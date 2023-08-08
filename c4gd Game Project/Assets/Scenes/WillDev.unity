@@ -12186,6 +12186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  speedonwall: 35
+  speedonground: 20
   wallSlideSpeedMultiplier: 1.2
   jumpForce: 20
   doublejumpForce: 12.5
@@ -12196,6 +12198,7 @@ MonoBehaviour:
   wallSlideGravityEnabled: 0
   jump: {fileID: 0}
   accelerationForce: 2500
+  bounceForce: 200
   isPushingForward: 0
 --- !u!1 &213718898
 GameObject:
@@ -24589,6 +24592,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  speedonwall: 80
+  speedonground: 40
   wallSlideSpeedMultiplier: 2
   jumpForce: 20
   doublejumpForce: 15
@@ -24599,6 +24604,7 @@ MonoBehaviour:
   wallSlideGravityEnabled: 0
   jump: {fileID: 0}
   accelerationForce: 2500
+  bounceForce: 200
   isPushingForward: 0
 --- !u!54 &515263697
 Rigidbody:
@@ -26039,15 +26045,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422752, guid: 11561786059d13346b9af9be81fcbed2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 227.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 422752, guid: 11561786059d13346b9af9be81fcbed2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 69
+      value: 3.43
       objectReference: {fileID: 0}
     - target: {fileID: 422752, guid: 11561786059d13346b9af9be81fcbed2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 81
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 422752, guid: 11561786059d13346b9af9be81fcbed2, type: 3}
       propertyPath: m_LocalRotation.w

@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    public float speed = 40;
+    public float speed;
+    public float speedonwall = 35;
+    public float speedonground = 20;
 
     private float forwardInput;
     private float horizontalInput;
@@ -66,10 +68,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = nextV;
         }
 
-        if (transform.position.y < 2) {
-            Vector3 newPosition = new Vector3(transform.position.x, 2f, transform.position.z);
-            transform.position = newPosition; 
-        }
+        // if (transform.position.y < 2) {
+        //     Vector3 newPosition = new Vector3(transform.position.x, 2f, transform.position.z);
+        //     transform.position = newPosition; 
+        // }
         // if(started) {
         //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
         // }
@@ -137,8 +139,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall")) {
             wallslide = true;
             // attachedRigidbody.useGravity = false;
-            speed = 80;
-            rb.useGravity = false;
+            speed = speedonwall;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
@@ -179,6 +180,8 @@ public class PlayerController : MonoBehaviour
         {
             wallslide = false;
             rb.useGravity = true;
+            speed = speedonground;
+            firstjump = true;
         } else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = false;
         }
