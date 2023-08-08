@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - BounceUp
   - PushForward
+  - RotateObstacle
   layers:
   - Default
   - TransparentFX
