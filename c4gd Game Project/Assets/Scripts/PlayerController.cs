@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb; 
     public float jumpForce = 180;
-    public float doublejumpForce = 100  ;
+    public float doublejumpForce = 100;
 
     public bool isOnGround = true;
     public bool firstjump = false;
@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource jump;
 
     public float accelerationForce = 2500f;
+
+    public float bounceForce = 200f;
 
     public bool isPushingForward = false;
     // public AudioSource jump2;
@@ -123,7 +125,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
-            rb.AddForce(Vector3.up * 250, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             firstjump = false;
             doublejump = false;
         }
