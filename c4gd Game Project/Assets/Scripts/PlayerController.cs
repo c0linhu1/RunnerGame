@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb; 
     public float jumpForce = 180;
+    public float doublejumpForce = 10;
 
     public bool isOnGround = true;
     public bool firstjump = false;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
             firstjump = true;
             audioSource.PlayOneShot(jumpSFX, 1.5f);
             } else if (firstjump) {
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
                 firstjump = false;
                 doublejump = true;
             }
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall")) {
             wallslide = true;
             // attachedRigidbody.useGravity = false;
-            speed = 80;
+            speed = 35;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.AddForce(Vector3.up * 300, ForceMode.Impulse);
