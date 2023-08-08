@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool firstjump = false;
     public bool doublejump = false;
-    
+    private Animator anim;
     public bool wallslide = false;
     private bool isWallSliding = false;
 
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         doublejump = false;
         wallslide = false;
         rb.useGravity = true;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -67,11 +68,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-                // jump = GetComponent<AudioSource>();
-                // jump.Play();
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                isOnGround = false;
-                firstjump = true;
+            jump = GetComponent<AudioSource>();
+            //jump.Play();
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("Jumping");
+            isOnGround = false;
+            firstjump = true;
+  
             } else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
                 // jump.Play();
@@ -107,7 +110,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("Ground")) {
-            speed = 40;
             wallslide = false;
             rb.useGravity = true;
             // attachedRigidbody.useGravity = true;
