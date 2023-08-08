@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public bool doublejump = false;
     private Animator anim;
     public bool wallslide = false;
-    private bool isWallSliding = false;
+   // private bool isWallSliding = false;
 
     public bool wallSlideGravityEnabled = false;
 
