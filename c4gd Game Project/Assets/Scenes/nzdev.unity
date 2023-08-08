@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1310,8 +1310,11 @@ GameObject:
   - component: {fileID: 1376012769}
   - component: {fileID: 1376012770}
   - component: {fileID: 1376012771}
+<<<<<<< HEAD
   - component: {fileID: 1376012772}
   - component: {fileID: 1376012773}
+=======
+>>>>>>> f94d49c3cd60648bdc45d6e88eeac7c22c061c96
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1391,7 +1394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376012764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.65, y: 10.09, z: 6.43}
+  m_LocalPosition: {x: -2.19, y: 10.09, z: 35.72}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1416,8 +1419,12 @@ MonoBehaviour:
   firstjump: 0
   doublejump: 0
   wallslide: 0
+<<<<<<< HEAD
   jump: {fileID: 1376012772}
   jump2: {fileID: 1376012772}
+=======
+  jump: {fileID: 0}
+>>>>>>> f94d49c3cd60648bdc45d6e88eeac7c22c061c96
 --- !u!54 &1376012770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1447,6 +1454,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+<<<<<<< HEAD
 --- !u!82 &1376012772
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1639,6 +1647,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+=======
+>>>>>>> f94d49c3cd60648bdc45d6e88eeac7c22c061c96
 --- !u!1 &1402694215
 GameObject:
   m_ObjectHideFlags: 0
