@@ -2663,11 +2663,11 @@ MonoBehaviour:
   accelerationForce: 2500
   bounceForce: 200
   isPushingForward: 0
-  Button1: {fileID: 0}
-  Button2: {fileID: 0}
-  Button3: {fileID: 0}
-  titleText: {fileID: 0}
-  optionButton: {fileID: 0}
+  Button1: {fileID: 663850949}
+  Button2: {fileID: 978452973}
+  Button3: {fileID: 934877017}
+  titleText: {fileID: 521665784}
+  optionButton: {fileID: 1934289674}
 --- !u!54 &1376012770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3912,9 +3912,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: b3af2793c64ddac4b8829393b25d7611, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 1376012769}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Options
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
