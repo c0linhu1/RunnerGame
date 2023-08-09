@@ -60,11 +60,9 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = true;
         anim = GetComponent<Animator>();
 
-        optionButton.SetActive(true);
         titleText.SetActive(true);
-        Button1.SetActive(true);
-        Button2.SetActive(true);
-        Button3.SetActive(true);
+
+        allbuttonactive();
     }
 
     void Update()
@@ -211,12 +209,38 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Options() {
+        allbuttoninactive();
+
+        
+    }
+
+    public void levelone() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void leveltwo() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void levelthree() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void allbuttoninactive() {
         optionButton.SetActive(false);
         Button1.SetActive(false);
         Button2.SetActive(false);
         Button3.SetActive(false);
+    }
 
-        
+    public void allbuttonactive() {
+        optionButton.SetActive(true);
+        Button1.SetActive(true);
+        Button2.SetActive(true);
+        Button3.SetActive(true);
     }
 }
 
