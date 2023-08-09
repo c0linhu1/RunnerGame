@@ -24436,8 +24436,8 @@ MonoBehaviour:
   firstjump: 0
   doublejump: 0
   wallslide: 0
-  jump: {fileID: 0}
-  jump2: {fileID: 0}
+  jump: {fileID: 331437550}
+  jump2: {fileID: 331437549}
   accelerationForce: 2500
   bounceForce: 50
   isPushingForward: 0
@@ -24487,14 +24487,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: db0613f69334d4c3790ca8a40aedc61c, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.653
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.669
+  m_Pitch: 1.49
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 114
+  Priority: 138
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -24583,14 +24583,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: db0613f69334d4c3790ca8a40aedc61c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.63
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 157
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
