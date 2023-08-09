@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     
-    public float speed;
+    public float speed = 20;
     public float speedonwall = 35;
     public float speedonground = 20;
 
@@ -69,11 +69,16 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
+        
+        if (Input.GetKeyDown(KeyCode.W) && isOnGround)
+        {
+            anim.SetBool(true);
+        }
 
-        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
-        // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
+            // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
+            // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
 
-        if (!isPushingForward) {
+            if (!isPushingForward) {
             Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
             //print(nextV);
             rb.velocity = nextV;
@@ -92,7 +97,7 @@ public class PlayerController : MonoBehaviour
             
             jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            // anim.SetTrigger("Jumping");
+            anim.SetTrigger("Jumping");
             isOnGround = false;
             firstjump = true;
   
