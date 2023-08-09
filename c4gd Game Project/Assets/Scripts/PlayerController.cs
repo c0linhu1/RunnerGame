@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     public bool doublejump = false;
     private Animator anim;
     public bool wallslide = false;
-   // private bool isWallSliding = false;
+    // private bool isWallSliding = false;
 
-    public bool wallSlideGravityEnabled = false;
+    // public bool wallSlideGravityEnabled = false;
 
     public AudioSource jump;
     public AudioSource jump2;
@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
             wallslide = true;
             // attachedRigidbody.useGravity = false;
             speed = speedonwall;
+            rb.useGravity = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
