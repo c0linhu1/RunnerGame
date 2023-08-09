@@ -39,6 +39,12 @@ public class PlayerController : MonoBehaviour
 
     private bool hasCollided = false;
 
+    public GameObject Button1;
+    public GameObject Button2;
+    public GameObject Button3;
+    public GameObject titleText;
+    public GameObject optionButton;
+
     // public float timerfordisappear = 0.5f;
 
 
@@ -53,6 +59,12 @@ public class PlayerController : MonoBehaviour
         wallslide = false;
         rb.useGravity = true;
         anim = GetComponent<Animator>();
+
+        optionButton.SetActive(true);
+        titleText.SetActive(true);
+        Button1.SetActive(true);
+        Button2.SetActive(true);
+        Button3.SetActive(true);
     }
 
     void Update()
@@ -195,8 +207,16 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DisappearAfterDelay(GameObject other)
     {
         yield return new WaitForSeconds(0.5f); 
-
         other.gameObject.SetActive(false);
+    }
+
+    public void Options() {
+        optionButton.SetActive(false);
+        Button1.SetActive(false);
+        Button2.SetActive(false);
+        Button3.SetActive(false);
+
+        
     }
 }
 
