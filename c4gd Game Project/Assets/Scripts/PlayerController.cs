@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
     public GameObject optionButton;
     public GameObject tutorialButton;
 
+    
+    private Vector3 initialPosition;
+    private CheckPointManager checkPointManager;
+
     // public float timerfordisappear = 0.5f;
 
 
@@ -64,6 +68,9 @@ public class PlayerController : MonoBehaviour
         titleText.SetActive(true);
 
         allbuttonactive();
+
+        initialPosition = transform.position;
+        checkPointManager = FindObjectOfType<CheckPointManager>();
     }
 
     void Update()
@@ -154,6 +161,11 @@ public class PlayerController : MonoBehaviour
         //     wallslide = true;
         //     rb.useGravity = false;
         // }
+
+        if (transform.position.y < -120)
+        {
+            RespawnAtLastCheckPoint();
+        }
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -267,6 +279,11 @@ public class PlayerController : MonoBehaviour
         Button2.SetActive(true);
         Button3.SetActive(true);
         tutorialButton.SetActive(true);
+    }
+
+    private void RespawnAtLastCheckPoint() {
+        Vector3 respawnPosition = checkPointManager.GetLastCheckPointPosition();
+        transform.position = respawnPosition;
     }
 }
 
