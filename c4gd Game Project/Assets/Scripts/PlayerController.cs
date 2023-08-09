@@ -39,10 +39,10 @@ public class PlayerController : MonoBehaviour
     // public GameObject Button1;
     // public GameObject Button2;
     // public GameObject Button3;
-    public GameObject titleText;
+    // public GameObject titleText;
     // public GameObject optionButton;
     // public GameObject tutorialButton;
-    public GameObject StartButton;
+    // public GameObject StartButton;
     
     private Vector3 initialPosition;
     private Vector3 lastCheckPointPosition;
@@ -61,11 +61,11 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = true;
         anim = GetComponent<Animator>();
 
-        titleText.SetActive(true);
-        started = false;
+        // titleText.SetActive(true);
+        // started = false;
 
-        StartButton.SetActive(true);
-        titleText.SetActive(true);
+        // StartButton.SetActive(true);
+        // titleText.SetActive(true);
 
         initialPosition = transform.position;
 
@@ -95,12 +95,12 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Falling", false);
         }
 
-        if (!isPushingForward && started) {
+        if (!isPushingForward) {
             Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
             rb.velocity = nextV;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && started) {
+        if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
             firstjump = true;
             isOnGround = false;
@@ -167,6 +167,9 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("CheckPoint")) {
             lastCheckPointPosition = transform.position;
         }
+        else if (other.gameObject.CompareTag("tptolevelone")) {
+            transform.position = new Vector3(200f, 30f, 42f);
+        }
     }
 
     
@@ -209,12 +212,11 @@ public class PlayerController : MonoBehaviour
     //     allbuttoninactive();
     // }
 
-    public void leveltutorial() {
-        titleText.SetActive(false);
-        StartButton.SetActive(false);
-        // Time.timeScale = 1;
-        started = true;
-    }
+    // public void leveltutorial() {
+    //     titleText.SetActive(false);
+    //     StartButton.SetActive(false);
+    //     // Time.timeScale = 1;
+    // }
 
 
     // public void allbuttoninactive() {
