@@ -24,11 +24,12 @@ public class PlayerController : MonoBehaviour
     public bool doublejump = false;
     private Animator anim;
     public bool wallslide = false;
-   // private bool isWallSliding = false;
+    // private bool isWallSliding = false;
 
-    public bool wallSlideGravityEnabled = false;
+    // public bool wallSlideGravityEnabled = false;
 
     public AudioSource jump;
+    public AudioSource jump2;
 
     public float accelerationForce = 2500f;
 
@@ -38,8 +39,14 @@ public class PlayerController : MonoBehaviour
 
     private bool hasCollided = false;
 
+    public GameObject Button1;
+    public GameObject Button2;
+    public GameObject Button3;
+    public GameObject titleText;
+    public GameObject optionButton;
+
     // public float timerfordisappear = 0.5f;
-    // public AudioSource jump2;
+
 
     // public bool started = false;
     
@@ -52,6 +59,10 @@ public class PlayerController : MonoBehaviour
         wallslide = false;
         rb.useGravity = true;
         anim = GetComponent<Animator>();
+
+        titleText.SetActive(true);
+
+        allbuttonactive();
     }
 
     void Update()
@@ -83,8 +94,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-            jump = GetComponent<AudioSource>();
-            //jump.Play();
+            
+            jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger("Jumping");
             isOnGround = false;
@@ -92,7 +103,10 @@ public class PlayerController : MonoBehaviour
   
             } else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
-                // jump.Play();
+                jump.Pause();
+
+                jump2.Play();
+                jump.Play();
                 firstjump = false;
                 doublejump = true;
             }
@@ -145,6 +159,7 @@ public class PlayerController : MonoBehaviour
             wallslide = true;
             // attachedRigidbody.useGravity = false;
             speed = speedonwall;
+            rb.useGravity = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             rb.useGravity = true;
@@ -195,8 +210,42 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DisappearAfterDelay(GameObject other)
     {
         yield return new WaitForSeconds(0.5f); 
-
         other.gameObject.SetActive(false);
+    }
+
+    public void Options() {
+        allbuttoninactive();
+
+        
+    }
+
+    public void levelone() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void leveltwo() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void levelthree() {
+        allbuttoninactive();
+        // Waiting for William to fill this part
+    }
+
+    public void allbuttoninactive() {
+        optionButton.SetActive(false);
+        Button1.SetActive(false);
+        Button2.SetActive(false);
+        Button3.SetActive(false);
+    }
+
+    public void allbuttonactive() {
+        optionButton.SetActive(true);
+        Button1.SetActive(true);
+        Button2.SetActive(true);
+        Button3.SetActive(true);
     }
 }
 
