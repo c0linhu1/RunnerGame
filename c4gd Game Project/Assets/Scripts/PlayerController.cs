@@ -70,13 +70,26 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        
-        // if (Input.GetKeyDown(KeyCode.W) && isOnGround)
-        // {
-            // anim.SetBool(true);
-        // }
-            // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
-            // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
+        //if (Input.GetKey(KeyCode.W) && isOnGround)
+        //{
+        //    anim.SetBool("Running", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("Running", false);
+        //}
+        //if (isOnGround == true)
+        //{
+        //    anim.SetBool("Falling", true);
+        //}
+        //else if (isOnGround == false)
+        //{
+        //    anim.SetBool("Falling", false);
+        ///}
+
+
+        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
+        // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
 
         if (!isPushingForward) {
             Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
@@ -94,16 +107,19 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-                // jump.Play();
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                //anim.SetTrigger("Jumping");
-                isOnGround = false;
-                firstjump = true;
+            
+            //jump.Play();
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            anim.SetTrigger("Jumping");
+            isOnGround = false;
+            firstjump = true;
+  
             } else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
-                jump.Pause();
-                jump2.Play();
-                jump.Play();
+                //jump.Pause();
+
+                //jump2.Play();
+                //jump.Play();
                 firstjump = false;
                 doublejump = true;
             }
