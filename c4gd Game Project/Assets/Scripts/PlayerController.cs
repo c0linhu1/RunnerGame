@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator DisappearAfterDelay(GameObject other)
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.3f); 
         other.gameObject.SetActive(false);
     }
 
