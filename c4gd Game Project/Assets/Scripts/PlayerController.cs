@@ -48,7 +48,9 @@ public class PlayerController : MonoBehaviour
 
     
     private Vector3 initialPosition;
-    private CheckPointManager checkPointManager;
+    private Vector3 lastCheckPointPosition;
+
+    public GameObject[] displanes;
 
     // public float timerfordisappear = 0.5f;
 
@@ -70,29 +72,30 @@ public class PlayerController : MonoBehaviour
         allbuttonactive();
 
         initialPosition = transform.position;
-        checkPointManager = FindObjectOfType<CheckPointManager>();
+
+        displanes = GameObject.FindGameObjectsWithTag("DisappearPlane");
     }
 
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        //if (Input.GetKey(KeyCode.W) && isOnGround)
-        //{
-        //    anim.SetBool("Running", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("Running", false);
-        //}
-        //if (isOnGround == true)
-        //{
-        //    anim.SetBool("Falling", true);
-        //}
-        //else if (isOnGround == false)
-        //{
-        //    anim.SetBool("Falling", false);
-        ///}
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround)
+        {
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
+        }
+        if (isOnGround == true)
+        {
+            anim.SetBool("Falling", true);
+        }
+        else if (isOnGround == false)
+        {
+            anim.SetBool("Falling", false);
+        }
 
 
         // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
@@ -206,6 +209,10 @@ public class PlayerController : MonoBehaviour
             hasCollided = true;
             StartCoroutine(DisappearAfterDelay(other.gameObject));
         }
+        else if (other.gameObject.CompareTag("CheckPoint")) {
+            lastCheckPointPosition = transform.position;
+            
+        }
 
         // while(!other.gameObject.CompareTag("Wall")) {
         //     wallslide = false;
@@ -283,8 +290,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void RespawnAtLastCheckPoint() {
-        Vector3 respawnPosition = checkPointManager.GetLastCheckPointPosition();
+        Vector3 respawnPosition = lastCheckPointPosition;
         transform.position = respawnPosition;
+        foreach (GameObject plane in displanes)
+        {
+            plane.SetActive(true);
+        }
     }
 }
 
