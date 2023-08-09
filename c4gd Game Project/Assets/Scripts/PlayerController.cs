@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.W) && isOnGround)
         {
-            anim.SetBool(true);
+       //     anim.SetBool(true);
         }
 
             // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
