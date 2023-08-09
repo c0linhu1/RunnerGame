@@ -71,6 +71,13 @@ public class PlayerController : MonoBehaviour
 
         initialPosition = transform.position;
         checkPointManager = FindObjectOfType<CheckPointManager>();
+
+        if (checkPointManager == null) {
+            Debug.LogError("CheckPointManager not found!");
+        }
+        else {
+            Debug.Log("CheckPointManager found.");
+        }   
     }
 
     void Update()
