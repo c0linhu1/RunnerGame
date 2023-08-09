@@ -12092,7 +12092,7 @@ GameObject:
   - component: {fileID: 68636160}
   m_Layer: 0
   m_Name: platform 4
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24834,7 +24834,7 @@ GameObject:
   - component: {fileID: 414918199}
   m_Layer: 0
   m_Name: platform 5
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25297,7 +25297,7 @@ GameObject:
   - component: {fileID: 458048731}
   m_Layer: 0
   m_Name: platform 3
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27492,7 +27492,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh62994
+  m_Name: pb_Mesh52318
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -29092,7 +29092,7 @@ GameObject:
   - component: {fileID: 1173052409}
   m_Layer: 0
   m_Name: platform 6
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29196,7 +29196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 60
+      value: 28.04
       objectReference: {fileID: 0}
     - target: {fileID: 400120, guid: 5917c0e93d180a842b61d1ebc62a195c, type: 3}
       propertyPath: m_LocalPosition.z

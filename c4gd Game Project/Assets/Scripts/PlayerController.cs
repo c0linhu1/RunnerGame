@@ -84,22 +84,22 @@ public class PlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        //if (Input.GetKey(KeyCode.W) && isOnGround)
-        //{
-        //    anim.SetBool("Running", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("Running", false);
-        //}
-        //if (isOnGround == true)
-        //{
-        //    anim.SetBool("Falling", true);
-        //}
-        //else if (isOnGround == false)
-        //{
-        //    anim.SetBool("Falling", false);
-        ///}
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround)
+        {
+            anim.SetBool("Running", true);
+        }
+        else
+        {
+            anim.SetBool("Running", false);
+        }
+        if (isOnGround == true)
+        {
+            anim.SetBool("Falling", true);
+        }
+        else if (isOnGround == false)
+        {
+            anim.SetBool("Falling", false);
+        }
 
 
         // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
