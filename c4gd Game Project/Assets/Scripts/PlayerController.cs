@@ -24,9 +24,6 @@ public class PlayerController : MonoBehaviour
     public bool doublejump = false;
     private Animator anim;
     public bool wallslide = false;
-    // private bool isWallSliding = false;
-
-    // public bool wallSlideGravityEnabled = false;
 
     public AudioSource jump;
     public AudioSource jump2;
@@ -39,23 +36,20 @@ public class PlayerController : MonoBehaviour
 
     private bool hasCollided = false;
 
-    public GameObject Button1;
-    public GameObject Button2;
-    public GameObject Button3;
+    // public GameObject Button1;
+    // public GameObject Button2;
+    // public GameObject Button3;
     public GameObject titleText;
-    public GameObject optionButton;
-    public GameObject tutorialButton;
-
+    // public GameObject optionButton;
+    // public GameObject tutorialButton;
+    public GameObject StartButton;
     
     private Vector3 initialPosition;
     private Vector3 lastCheckPointPosition;
 
     public GameObject[] displanes;
 
-    // public float timerfordisappear = 0.5f;
-
-
-    // public bool started = false;
+    public bool started = false;
     
     void Start()
     {
@@ -68,8 +62,10 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         titleText.SetActive(true);
+        started = false;
 
-        allbuttonactive();
+        StartButton.SetActive(true);
+        titleText.SetActive(true);
 
         initialPosition = transform.position;
 
@@ -78,8 +74,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+    
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
+        
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround)
         {
             anim.SetBool("Running", true);
@@ -97,27 +95,13 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Falling", false);
         }
 
-
-        // transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed); 
-        // transform.Translate(forwardInput * Vector3.forward * Time.deltaTime * speed);
-
-        if (!isPushingForward) {
+        if (!isPushingForward && started) {
             Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
-            //print(nextV);
             rb.velocity = nextV;
         }
 
-        // if (transform.position.y < 2) {
-        //     Vector3 newPosition = new Vector3(transform.position.x, 2f, transform.position.z);
-        //     transform.position = newPosition; 
-        // }
-        // if(started) {
-        //     transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        // }
-
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && started) {
             if (isOnGround) {
-            
             //jump.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger("Jumping");
@@ -134,36 +118,6 @@ public class PlayerController : MonoBehaviour
                 doublejump = true;
             }
         }
-        // if (collided){        
-        //     if (timerfordisappear > 0) {
-        //         timerfordisappear -= Time.deltaTime;
-        //     } else {
-        //         Destroy(other.gameObject);
-        //     }
-        // }
-
-    //    if (wallslide && !isOnGround)
-    //     {
-    //         isWallSliding = true;
-    //         rb.useGravity = wallSlideGravityEnabled;
-    //         if (isWallSliding)
-    //         {
-    //             rb.velocity = new Vector2(rb.velocity.x, -speed * wallSlideSpeedMultiplier);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         isWallSliding = false;
-    //         rb.useGravity = true;
-    //     }
-
-        // if (transform.position.x <= 8.0f || transform.position.x >= -8.0f) {
-        //     wallslide = false;
-        //     rb.useGravity = true;
-        // } else {
-        //     wallslide = true;
-        //     rb.useGravity = false;
-        // }
 
         if (transform.position.y < -120)
         {
@@ -210,23 +164,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("CheckPoint")) {
             lastCheckPointPosition = transform.position;
-            
         }
-
-        // while(!other.gameObject.CompareTag("Wall")) {
-        //     wallslide = false;
-        // } 
-        // Don't use this code! It will make Unity CRASH!
     }
 
-    // private void OnCollisionStay(Collision other)
-    // {
-    //     // Debug-draw all contact points and normals
-    //     if (other.gameObject.CompareTag("Wall"))
-    //     {
-    //         wallslide = false;
-    //     } 
-    // }
     
     private void OnCollisionExit(Collision other)
     {
@@ -247,46 +187,49 @@ public class PlayerController : MonoBehaviour
         other.gameObject.SetActive(false);
     }
 
-    public void Options() {
-        allbuttoninactive();
+    // public void Options() {
+    //     allbuttoninactive();
+    // }
 
-        
+    // public void Tutorial() {
+    //     allbuttoninactive();
+    // }
+
+    // public void levelone() {
+    //     allbuttoninactive();
+    // }
+
+    // public void leveltwo() {
+    //     allbuttoninactive();
+    // }
+
+    // public void levelthree() {
+    //     allbuttoninactive();
+    // }
+
+    public void leveltutorial() {
+        titleText.SetActive(false);
+        StartButton.SetActive(false);
+        // Time.timeScale = 1;
+        started = true;
     }
 
-    public void Tutorial() {
-        allbuttoninactive();
-    }
 
-    public void levelone() {
-        allbuttoninactive();
-        // Waiting for William to fill this part
-    }
+    // public void allbuttoninactive() {
+    //     optionButton.SetActive(false);
+    //     Button1.SetActive(false);
+    //     Button2.SetActive(false);
+    //     Button3.SetActive(false);
+    //     tutorialButton.SetActive(false);
+    // }
 
-    public void leveltwo() {
-        allbuttoninactive();
-        // Waiting for William to fill this part
-    }
-
-    public void levelthree() {
-        allbuttoninactive();
-        // Waiting for William to fill this part
-    }
-
-    public void allbuttoninactive() {
-        optionButton.SetActive(false);
-        Button1.SetActive(false);
-        Button2.SetActive(false);
-        Button3.SetActive(false);
-        tutorialButton.SetActive(false);
-    }
-
-    public void allbuttonactive() {
-        optionButton.SetActive(true);
-        Button1.SetActive(true);
-        Button2.SetActive(true);
-        Button3.SetActive(true);
-        tutorialButton.SetActive(true);
-    }
+    // public void allbuttonactive() {
+    //     optionButton.SetActive(true);
+    //     Button1.SetActive(true);
+    //     Button2.SetActive(true);
+    //     Button3.SetActive(true);
+    //     tutorialButton.SetActive(true);
+    // }
 
     private void RespawnAtLastCheckPoint() {
         Vector3 respawnPosition = lastCheckPointPosition;
