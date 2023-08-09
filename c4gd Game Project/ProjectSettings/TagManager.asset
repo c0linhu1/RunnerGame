@@ -11,6 +11,7 @@ TagManager:
   - RotateObstacle
   - DisappearPlane
   - CheckPoint
+  - tptolevelthree
   layers:
   - Default
   - TransparentFX
