@@ -23855,11 +23855,17 @@ MonoBehaviour:
   firstjump: 0
   doublejump: 0
   wallslide: 0
-  wallSlideGravityEnabled: 0
   jump: {fileID: 0}
+  jump2: {fileID: 0}
   accelerationForce: 2500
   bounceForce: 50
   isPushingForward: 0
+  Button1: {fileID: 0}
+  Button2: {fileID: 0}
+  Button3: {fileID: 0}
+  titleText: {fileID: 0}
+  optionButton: {fileID: 0}
+  tutorialButton: {fileID: 0}
 --- !u!65 &331437547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24661,7 +24667,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26718
+  m_Name: pb_Mesh45438
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Button3;
     public GameObject titleText;
     public GameObject optionButton;
+    public GameObject tutorialButton;
 
     // public float timerfordisappear = 0.5f;
 
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground")) {
             wallslide = false;
             rb.useGravity = true;
+            isOnGround = true;
             // attachedRigidbody.useGravity = true;
             if (doublejump || firstjump) {
                 isOnGround = true;
@@ -152,6 +154,8 @@ public class PlayerController : MonoBehaviour
         } 
         else if (other.gameObject.CompareTag("Wall")) {
             wallslide = true;
+            firstjump = false;
+            doublejump = false;
             // attachedRigidbody.useGravity = false;
             speed = speedonwall;
             rb.useGravity = false;
@@ -214,6 +218,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    public void Tutorial() {
+        allbuttoninactive();
+    }
+
     public void levelone() {
         allbuttoninactive();
         // Waiting for William to fill this part
@@ -234,6 +242,7 @@ public class PlayerController : MonoBehaviour
         Button1.SetActive(false);
         Button2.SetActive(false);
         Button3.SetActive(false);
+        tutorialButton.SetActive(false);
     }
 
     public void allbuttonactive() {
@@ -241,6 +250,7 @@ public class PlayerController : MonoBehaviour
         Button1.SetActive(true);
         Button2.SetActive(true);
         Button3.SetActive(true);
+        tutorialButton.SetActive(true);
     }
 }
 
