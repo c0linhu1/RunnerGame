@@ -93,9 +93,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-                jump.Play();
+                // jump.Play();
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                anim.SetTrigger("Jumping");
+                //anim.SetTrigger("Jumping");
                 isOnGround = false;
                 firstjump = true;
             } else if (firstjump) {
