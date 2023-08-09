@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 lastCheckPointPosition;
 
+    public GameObject[] displanes;
 
     // public float timerfordisappear = 0.5f;
 
@@ -71,6 +72,8 @@ public class PlayerController : MonoBehaviour
         allbuttonactive();
 
         initialPosition = transform.position;
+
+        displanes = GameObject.FindGameObjectsWithTag("DisappearPlane");
     }
 
     void Update()
@@ -207,6 +210,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("CheckPoint")) {
             lastCheckPointPosition = transform.position;
+            
         }
 
         // while(!other.gameObject.CompareTag("Wall")) {
@@ -287,6 +291,10 @@ public class PlayerController : MonoBehaviour
     private void RespawnAtLastCheckPoint() {
         Vector3 respawnPosition = lastCheckPointPosition;
         transform.position = respawnPosition;
+        foreach (GameObject plane in displanes)
+        {
+            plane.SetActive(true);
+        }
     }
 }
 
