@@ -1671,6 +1671,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
+  speedonwall: 35
+  speedonground: 20
   wallSlideSpeedMultiplier: 2
   jumpForce: 180
   doublejumpForce: 100
@@ -1680,10 +1682,7 @@ MonoBehaviour:
   wallslide: 0
   wallSlideGravityEnabled: 0
   jump: {fileID: 1376012772}
-<<<<<<< HEAD
   jump2: {fileID: 1376012773}
-=======
->>>>>>> f748e9a95bf6be0080682b629e9be09212e55a9d
   accelerationForce: 2500
   bounceForce: 200
   isPushingForward: 0
@@ -1825,7 +1824,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a1a502ea0aeab4e2d818f8d7a6c339f0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.1
   Loop: 0
   Mute: 0
   Spatialize: 0
