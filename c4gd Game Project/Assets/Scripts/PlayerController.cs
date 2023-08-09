@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("RotateObstacle")) {
             print("Game Over");
         }
-        else if (!hasCollided && other.gameObject.CompareTag("DisappearPlane")) {
+        else if (other.gameObject.CompareTag("DisappearPlane")) {
             hasCollided = true;
             StartCoroutine(DisappearAfterDelay(other.gameObject));
         }
