@@ -114,21 +114,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)) {
             if (isOnGround) {
-            
-            //jump.Play();
+            firstjump = true;
+            isOnGround = false;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             anim.SetTrigger("Jumping");
-            isOnGround = false;
-            firstjump = true;
-  
-            } else if (firstjump) {
+            jump.Play();
+        }           
+           else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
-                //jump.Pause();
+                jump.Pause();
 
-                //jump2.Play();
-                //jump.Play();
+                jump2.Play();
+                jump.Play();
                 firstjump = false;
                 doublejump = true;
+                isOnGround = false;
             }
         }
         // if (collided){        
@@ -181,6 +181,7 @@ public class PlayerController : MonoBehaviour
             }
         } 
         else if (other.gameObject.CompareTag("Wall")) {
+            isOnGround = false;
             wallslide = true;
             firstjump = false;
             doublejump = false;
