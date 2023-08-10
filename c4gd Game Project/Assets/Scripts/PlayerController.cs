@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioSource jump;
     public AudioSource jump2;
-
+    public AudioSource tpAudio;
     public float accelerationForce = 2500f;
 
     public float bounceForce = 200f;
@@ -202,6 +202,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
+            tpAudio.Play();
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
