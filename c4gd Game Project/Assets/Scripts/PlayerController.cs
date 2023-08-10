@@ -85,6 +85,8 @@ public class PlayerController : MonoBehaviour
         pad_e.SetActive(false);
 
         obstacle_text.SetActive(false);
+
+        StartCoroutine(DisappearAfterDelay(movement_a));
         // titleText.SetActive(true);
         // started = false;
 
@@ -183,7 +185,6 @@ public class PlayerController : MonoBehaviour
             isPushingForward = true;
             isOnGround = true;
             rb.AddForce(transform.forward * accelerationForce, ForceMode.Impulse);
-            pad_c.SetActive(false);
         }
         else if (other.gameObject.CompareTag("RotateObstacle")) {
             isOnGround = true;
@@ -191,7 +192,7 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("DisappearPlane")) {
             hasCollided = true;
             pad_d.SetActive(false);
-            StartCoroutine(DisappearAfterDelay(other.gameObject));
+            StartCoroutine(DisappearAfterDelayA(other.gameObject));
             wallslide = false;
             rb.useGravity = true;
             isOnGround = true;
@@ -199,13 +200,11 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("CheckPoint")) {
             lastCheckPointPosition = transform.position;
             isOnGround = true;
-            pad_b.SetActive(false);
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
-            movement_d.SetActive(false);
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             transform.position = new Vector3(569.7f, 42f, 50f);
@@ -217,41 +216,48 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("movementtwo")) {
             isOnGround = true;
-            movement_a.SetActive(false);
             movement_b.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(movement_b));
         }
         else if (other.gameObject.CompareTag("movementthree")) {
             isOnGround = true;
-            movement_b.SetActive(false);
             movement_c.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(movement_c));
         }
         else if (other.gameObject.CompareTag("movementfour")) {
             isOnGround = true;
             movement_d.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(movement_d));
         }
         else if (other.gameObject.CompareTag("padone")) {
             isOnGround = true;
             pad_a.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(pad_a));
         }
         else if (other.gameObject.CompareTag("padtwo")) {
             isOnGround = true;
             pad_b.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(pad_b));
         }
         else if (other.gameObject.CompareTag("padthree")) {
             isOnGround = true;
             pad_c.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(pad_c));
         }
         else if (other.gameObject.CompareTag("padfour")) {
             isOnGround = true;
             pad_d.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(pad_d));
         }
         else if (other.gameObject.CompareTag("padfive")) {
             isOnGround = true;
             pad_e.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(pad_e));
         }
         else if (other.gameObject.CompareTag("obstacletext")) {
             isOnGround = true;
             obstacle_text.SetActive(true);
+            StartCoroutine(DisappearAfterDelay(obstacle_text));
         }
     }
 
@@ -268,21 +274,15 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = false;
         } 
-        else if (other.gameObject.CompareTag("movementthree")) {
-            movement_c.SetActive(false);
-        }
-        else if (other.gameObject.CompareTag("padone")) {
-            pad_a.SetActive(false);
-        }
-        else if (other.gameObject.CompareTag("padfive")) {
-            pad_e.SetActive(false);
-        }
-        else if (other.gameObject.CompareTag("obstacletext")) {
-            obstacle_text.SetActive(false);
-        }
     }
 
     private IEnumerator DisappearAfterDelay(GameObject other)
+    {
+        yield return new WaitForSeconds(1.0f); 
+        other.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DisappearAfterDelayA(GameObject other)
     {
         yield return new WaitForSeconds(0.5f); 
         other.gameObject.SetActive(false);
