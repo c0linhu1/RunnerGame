@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource jump;
     public AudioSource jump2;
     public AudioSource tpAudio;
+    public AudioSource pushF;
+    public AudioSource cp;
     public float accelerationForce = 2500f;
 
     public float bounceForce = 200f;
@@ -176,12 +178,14 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
+            
             rb.useGravity = true;
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             firstjump = false;
             doublejump = false;
         }
         else if (other.gameObject.CompareTag("PushForward")) {
+            pushF.Play();
             isPushingForward = true;
             isOnGround = true;
             rb.AddForce(transform.forward * accelerationForce, ForceMode.Impulse);
@@ -198,6 +202,7 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("CheckPoint")) {
+            cp.Play();
             lastCheckPointPosition = transform.position;
             isOnGround = true;
         }
@@ -206,11 +211,14 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
+           // tpAudio.Stop();
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
+            tpAudio.Play();
             transform.position = new Vector3(569.7f, 42f, 50f);
             lastCheckPointPosition = new Vector3(569.7f, 42f, 50f);
             isOnGround = true;
+            
         }
         else if (other.gameObject.CompareTag("platform")) {
             isOnGround = true;
