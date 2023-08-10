@@ -5,8 +5,8 @@ using UnityEngine;
 public class RotatePlane : MonoBehaviour
 {
 
-    public float waittime = 1.300000f;
-    public float timerotating = 1.000000f;
+    public float waittime = 2.000000f;
+    public float timerotating = 1.500000f;
     public float rotationdegree = 180.000000f;
     public float timer = 0.000000f;
 

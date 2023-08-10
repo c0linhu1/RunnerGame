@@ -13,6 +13,17 @@ TagManager:
   - CheckPoint
   - tptolevelthree
   - tptolevelone
+  - tptoleveltwo
+  - platform
+  - movementtwo
+  - movementthree
+  - movementfour
+  - padone
+  - padtwo
+  - padthree
+  - padfour
+  - padfive
+  - obstacletext
   layers:
   - Default
   - TransparentFX

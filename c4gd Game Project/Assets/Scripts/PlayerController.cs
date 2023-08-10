@@ -50,7 +50,19 @@ public class PlayerController : MonoBehaviour
     public GameObject[] displanes;
 
     public bool started = false;
+
+    public GameObject movement_a;
+    public GameObject movement_b;
+    public GameObject movement_c;
+    public GameObject movement_d;
     
+    public GameObject pad_a;
+    public GameObject pad_b;
+    public GameObject pad_c;
+    public GameObject pad_d;
+    public GameObject pad_e;
+    public GameObject obstacle_text;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -61,11 +73,25 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = true;
         anim = GetComponent<Animator>();
 
+        movement_a.SetActive(true);
+        movement_b.SetActive(false);
+        movement_c.SetActive(false);
+        movement_d.SetActive(false);
+
+        pad_a.SetActive(false);
+        pad_b.SetActive(false);
+        pad_c.SetActive(false);
+        pad_d.SetActive(false);
+        pad_e.SetActive(false);
+
+        obstacle_text.SetActive(false);
         // titleText.SetActive(true);
         // started = false;
 
         // StartButton.SetActive(true);
         // titleText.SetActive(true);
+
+
 
         initialPosition = transform.position;
 
@@ -155,20 +181,77 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = true;
+            isOnGround = true;
             rb.AddForce(transform.forward * accelerationForce, ForceMode.Impulse);
+            pad_c.SetActive(false);
         }
         else if (other.gameObject.CompareTag("RotateObstacle")) {
-            print("Game Over");
+            isOnGround = true;
         }
         else if (other.gameObject.CompareTag("DisappearPlane")) {
             hasCollided = true;
+            pad_d.SetActive(false);
             StartCoroutine(DisappearAfterDelay(other.gameObject));
+            wallslide = false;
+            rb.useGravity = true;
+            isOnGround = true;
         }
         else if (other.gameObject.CompareTag("CheckPoint")) {
             lastCheckPointPosition = transform.position;
+            isOnGround = true;
+            pad_b.SetActive(false);
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
             transform.position = new Vector3(200f, 30f, 42f);
+            lastCheckPointPosition = new Vector3(200f, 30f, 42f);
+            isOnGround = true;
+            movement_d.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("tptoleveltwo")) {
+            transform.position = new Vector3(569.7f, 42f, 50f);
+            lastCheckPointPosition = new Vector3(569.7f, 42f, 50f);
+            isOnGround = true;
+        }
+        else if (other.gameObject.CompareTag("platform")) {
+            isOnGround = true;
+        }
+        else if (other.gameObject.CompareTag("movementtwo")) {
+            isOnGround = true;
+            movement_a.SetActive(false);
+            movement_b.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("movementthree")) {
+            isOnGround = true;
+            movement_b.SetActive(false);
+            movement_c.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("movementfour")) {
+            isOnGround = true;
+            movement_d.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("padone")) {
+            isOnGround = true;
+            pad_a.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("padtwo")) {
+            isOnGround = true;
+            pad_b.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("padthree")) {
+            isOnGround = true;
+            pad_c.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("padfour")) {
+            isOnGround = true;
+            pad_d.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("padfive")) {
+            isOnGround = true;
+            pad_e.SetActive(true);
+        }
+        else if (other.gameObject.CompareTag("obstacletext")) {
+            isOnGround = true;
+            obstacle_text.SetActive(true);
         }
     }
 
@@ -181,14 +264,27 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = true;
             speed = speedonground;
             firstjump = true;
-        } else if (other.gameObject.CompareTag("PushForward")) {
+        } 
+        else if (other.gameObject.CompareTag("PushForward")) {
             isPushingForward = false;
+        } 
+        else if (other.gameObject.CompareTag("movementthree")) {
+            movement_c.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("padone")) {
+            pad_a.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("padfive")) {
+            pad_e.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("obstacletext")) {
+            obstacle_text.SetActive(false);
         }
     }
 
     private IEnumerator DisappearAfterDelay(GameObject other)
     {
-        yield return new WaitForSeconds(0.3f); 
+        yield return new WaitForSeconds(0.5f); 
         other.gameObject.SetActive(false);
     }
 
