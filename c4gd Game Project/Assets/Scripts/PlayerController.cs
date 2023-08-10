@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
 
     private bool hasCollided = false;
 
+    public bool hastriggeredobstacle = false;
+
     // public GameObject Button1;
     // public GameObject Button2;
     // public GameObject Button3;
@@ -265,8 +267,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("obstacletext")) {
             isOnGround = true;
-            obstacle_text.SetActive(true);
-            StartCoroutine(DisappearAfterDelay(obstacle_text));
+            if (!hastriggeredobstacle) {
+                obstacle_text.SetActive(true);
+                StartCoroutine(DisappearAfterDelay(obstacle_text));
+                hastriggeredobstacle = true;
+            }
         }
     }
 
