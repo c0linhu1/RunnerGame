@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource tpAudio;
     public AudioSource pushF;
     public AudioSource cp;
+    public AudioSource boun;
     public float accelerationForce = 2500f;
 
     public float bounceForce = 200f;
@@ -178,7 +179,7 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
-            
+            boun.Play();
             rb.useGravity = true;
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             firstjump = false;
