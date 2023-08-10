@@ -225,6 +225,13 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             
         }
+        else if (other.gameObject.CompareTag("tptolevelthree")) {
+            tpAudio.Play();
+            transform.position = new Vector3(1249.7f, 36f, 98.1f);
+            lastCheckPointPosition = new Vector3(1249.7f, 36f, 98.1f);
+            isOnGround = true;
+            
+        }
         else if (other.gameObject.CompareTag("platform")) {
             isOnGround = true;
         }
