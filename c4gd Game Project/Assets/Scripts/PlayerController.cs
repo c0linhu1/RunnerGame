@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource pushF;
     public AudioSource cp;
     public AudioSource boun;
+    public AudioSource slide;
     public float accelerationForce = 2500f;
 
     public float bounceForce = 200f;
@@ -170,6 +171,7 @@ public class PlayerController : MonoBehaviour
             }
         } 
         else if (other.gameObject.CompareTag("Wall")) {
+           // slide.Play();
             isOnGround = false;
             wallslide = true;
             firstjump = false;
