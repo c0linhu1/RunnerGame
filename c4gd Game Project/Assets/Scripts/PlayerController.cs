@@ -69,6 +69,11 @@ public class PlayerController : MonoBehaviour
     public GameObject pad_e;
     public GameObject obstacle_text;
 
+    public GameObject ttrltag;
+    public GameObject lvl1tag;
+    public GameObject lvl2tag;
+    public GameObject lvl3tag;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -105,6 +110,11 @@ public class PlayerController : MonoBehaviour
         lastCheckPointPosition = new Vector3(-4.622f, 0.31f, -25f);
 
         displanes = GameObject.FindGameObjectsWithTag("DisappearPlane");
+
+        ttrltag.SetActive(true);
+        lvl1tag.SetActive(false);
+        lvl2tag.SetActive(false);
+        lvl3tag.SetActive(false);
     }
 
     void Update()
@@ -217,21 +227,24 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
-          
+            ttrltag.SetActive(false);
+            lvl1tag.SetActive(true);
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             tpAudio.Play();
             transform.position = new Vector3(569.7f, 42f, 50f);
             lastCheckPointPosition = new Vector3(569.7f, 42f, 50f);
             isOnGround = true;
-            
+            lvl1tag.SetActive(false);
+            lvl2tag.SetActive(true);
         }
         else if (other.gameObject.CompareTag("tptolevelthree")) {
             tpAudio.Play();
             transform.position = new Vector3(1249.7f, 36f, 98.1f);
             lastCheckPointPosition = new Vector3(1249.7f, 36f, 98.1f);
             isOnGround = true;
-            
+            lvl2tag.SetActive(false);
+            lvl3tag.SetActive(true);
         }
         else if (other.gameObject.CompareTag("platform")) {
             isOnGround = true;
