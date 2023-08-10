@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using System.Threading;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -74,6 +76,29 @@ public class PlayerController : MonoBehaviour
     public GameObject lvl2tag;
     public GameObject lvl3tag;
 
+    public GameObject Ragaintext;
+
+    public float timer;
+    public float high_time;
+
+    public float tutorialtimer;
+    public float level1timer;
+    public float level2timer;
+    public float level3timer;
+
+    public TextMeshProUGUI time_text;
+    public TextMeshProUGUI high_time_text;
+    public TextMeshProUGUI tutorialtime_text;
+    public TextMeshProUGUI level1time_text;
+    public TextMeshProUGUI level2time_text;
+    public TextMeshProUGUI level3time_text;
+
+    public bool timestarted;
+    public bool tutorialstarted;
+    public bool level1started;
+    public bool level2started;
+    public bool level3started;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -115,6 +140,19 @@ public class PlayerController : MonoBehaviour
         lvl1tag.SetActive(false);
         lvl2tag.SetActive(false);
         lvl3tag.SetActive(false);
+
+        Ragaintext.SetActive(false);
+
+        timer = 0.00f;
+        timestarted = false;
+        tutorialstarted = false;
+        level1started = false;
+        level2started = false;
+        level3started = false;
+        tutorialtimer = 0.00f;
+        level1timer = 0.00f;
+        level2timer = 0.00f;
+        level3timer = 0.00f;
     }
 
     void Update()
@@ -122,8 +160,13 @@ public class PlayerController : MonoBehaviour
     
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
+
+        if (!timestarted && Input.GetKey(KeyCode.W)) {
+            tutorialstarted = true;
+            timestarted = true;
+        }
         
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround && timestarted)
         {
             anim.SetBool("Running", true);
         }
@@ -139,6 +182,50 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Falling", false);
         }
+
+        if (timestarted) {
+            timer += Time.deltaTime;
+            time_text.text = "Time: " + timer.ToString("F2");
+        }
+
+        if (tutorialstarted) {
+            tutorialtimer += Time.deltaTime;
+            tutorialtime_text.text = "Tutorial: " + tutorialtimer.ToString("F2");
+        }
+        if (level1started) {
+            level1timer += Time.deltaTime;
+            level1time_text.text = "Level 1: " + level1timer.ToString("F2");
+        }
+        if (level2started) {
+            level2timer += Time.deltaTime;
+            level2time_text.text = "Level 2: " + level2timer.ToString("F2");
+        }
+        if (level3started) {
+            level3timer += Time.deltaTime;
+            level3time_text.text = "Level 3: " + level3timer.ToString("F2");
+        }
+
+        if (Input.GetKey(KeyCode.R)) {
+            Ragaintext.SetActive(true);
+            StartCoroutine(RDisappearAfterDelay(Ragaintext));
+            if (Input.GetKey(KeyCode.Space)) {
+                Ragaintext.SetActive(false);
+                timestarted = false;
+                transform.position = new Vector3(-4.622f, 0.31f, -25f);
+                initialPosition = new Vector3(-4.622f, 0.31f, -25f);
+                lastCheckPointPosition = new Vector3(-4.622f, 0.31f, -25f);
+                level3started = false;
+                level1started = false;
+                tutorialstarted = false;
+                level2started = false;
+                timer = 0.00f;
+                tutorialtimer = 0.00f;
+                level1timer = 0.00f;
+                level2timer = 0.00f;
+                level3timer = 0.00f;
+            }
+        }
+        
 
         if (!isPushingForward) {
             Vector3 nextV = new Vector3(horizontalInput * speed, rb.velocity.y, forwardInput * speed);
@@ -156,7 +243,6 @@ public class PlayerController : MonoBehaviour
            else if (firstjump) {
                 rb.AddForce(Vector3.up * doublejumpForce, ForceMode.Impulse);
                 jump.Pause();
-
                 jump2.Play();
                 jump.Play();
                 firstjump = false;
@@ -223,12 +309,15 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
-             tpAudio.Play();
+            tpAudio.Play();
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
             ttrltag.SetActive(false);
             lvl1tag.SetActive(true);
+            tutorialstarted = false;
+            level1started = true;
+            level1timer = 0.00f;
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             tpAudio.Play();
@@ -237,6 +326,9 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             lvl1tag.SetActive(false);
             lvl2tag.SetActive(true);
+            level1started = false;
+            level2started = true;
+            level2timer = 0.00f;
         }
         else if (other.gameObject.CompareTag("tptolevelthree")) {
             tpAudio.Play();
@@ -245,6 +337,9 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             lvl2tag.SetActive(false);
             lvl3tag.SetActive(true);
+            level2started = false;
+            level3started = true;
+            level3timer = 0.00f;
         }
         else if (other.gameObject.CompareTag("platform")) {
             isOnGround = true;
@@ -297,6 +392,27 @@ public class PlayerController : MonoBehaviour
                 hastriggeredobstacle = true;
             }
         }
+        else if (other.gameObject.CompareTag("finalline")) {
+            timestarted = false;
+            if (timer < high_time || high_time == 0.00f) {
+                high_time = timer;
+                high_time_text.text = "<color=#00FF01FF>High Time: " + high_time.ToString("F2") + "</color>";
+                PlayerPrefs.SetFloat("hightime", high_time);
+            }
+            timestarted = false;
+            transform.position = new Vector3(-4.622f, 0.31f, -25f);
+            initialPosition = new Vector3(-4.622f, 0.31f, -25f);
+            lastCheckPointPosition = new Vector3(-4.622f, 0.31f, -25f);
+            level3started = false;
+            level1started = false;
+            tutorialstarted = false;
+            level2started = false;
+            timer = 0.00f;
+            tutorialtimer = 0.00f;
+            level1timer = 0.00f;
+            level2timer = 0.00f;
+            level3timer = 0.00f;
+        }
     }
 
     
@@ -323,6 +439,12 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DisappearAfterDelayA(GameObject other)
     {
         yield return new WaitForSeconds(0.5f); 
+        other.gameObject.SetActive(false);
+    }
+
+    private IEnumerator RDisappearAfterDelay(GameObject other)
+    {
+        yield return new WaitForSeconds(2.0f); 
         other.gameObject.SetActive(false);
     }
 

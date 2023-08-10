@@ -24,6 +24,7 @@ TagManager:
   - padfour
   - padfive
   - obstacletext
+  - finalline
   layers:
   - Default
   - TransparentFX
