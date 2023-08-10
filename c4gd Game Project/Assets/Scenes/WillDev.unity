@@ -24892,6 +24892,7 @@ MonoBehaviour:
   titleText: {fileID: 0}
   optionButton: {fileID: 0}
   tutorialButton: {fileID: 0}
+  displanes: []
 --- !u!65 &331437547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31678,14 +31679,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376511741}
-  m_LocalRotation: {x: 0.20967828, y: 0, z: 0, w: 0.9777705}
+  m_LocalRotation: {x: 0.23344536, y: 0, z: 0, w: 0.97236997}
   m_LocalPosition: {x: -5, y: 1, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 24.207, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 27, y: 0, z: 0}
 --- !u!114 &1376511745
 MonoBehaviour:
   m_ObjectHideFlags: 0
