@@ -98,10 +98,11 @@ public class PlayerController : MonoBehaviour
 
         // StartButton.SetActive(true);
         // titleText.SetActive(true);
+        transform.position = new Vector3(-4.622f, 0.31f, -25f);
 
+        initialPosition = new Vector3(-4.622f, 0.31f, -25f);
 
-
-        initialPosition = transform.position;
+        lastCheckPointPosition = new Vector3(-4.622f, 0.31f, -25f);
 
         displanes = GameObject.FindGameObjectsWithTag("DisappearPlane");
     }
