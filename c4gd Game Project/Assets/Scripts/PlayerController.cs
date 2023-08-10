@@ -207,11 +207,11 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
-            // tpAudio.Play();
+             tpAudio.Play();
             transform.position = new Vector3(200f, 30f, 42f);
             lastCheckPointPosition = new Vector3(200f, 30f, 42f);
             isOnGround = true;
-           // tpAudio.Stop();
+          
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             tpAudio.Play();
