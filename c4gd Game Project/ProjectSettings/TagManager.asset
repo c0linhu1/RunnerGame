@@ -12,6 +12,7 @@ TagManager:
   - DisappearPlane
   - CheckPoint
   - tptolevelthree
+  - tptolevelone
   layers:
   - Default
   - TransparentFX
