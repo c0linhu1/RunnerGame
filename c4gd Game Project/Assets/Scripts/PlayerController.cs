@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.R)) {
             Ragaintext.SetActive(true);
             StartCoroutine(RDisappearAfterDelay(Ragaintext));
-            if (Input.GetKey(KeyCode.Space)) {
+            if (Input.GetKey(KeyCode.L)) {
                 Ragaintext.SetActive(false);
                 timestarted = false;
                 transform.position = new Vector3(-4.622f, 0.31f, -25f);
