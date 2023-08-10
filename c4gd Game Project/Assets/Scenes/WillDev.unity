@@ -2168,6 +2168,7 @@ MonoBehaviour:
   wallslide: 0
   jump: {fileID: 331437550}
   jump2: {fileID: 331437549}
+  tpAudio: {fileID: 0}
   accelerationForce: 2500
   bounceForce: 50
   isPushingForward: 0
@@ -9523,7 +9524,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 73f5fbf7f79533b4a965bfe9f437c27a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13905,7 +13906,7 @@ GameObject:
   - component: {fileID: 1900065624}
   m_Layer: 0
   m_Name: platform 2
-  m_TagString: Ground
+  m_TagString: platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
