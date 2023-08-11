@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         level2timer = 0.00f;
         level3timer = 0.00f;
         highest_time = PlayerPrefs.GetFloat("hightime");  
-        high_time_text.text = "High Time: " + highest_time.ToString("F2");
+        high_time_text.text = "Best Time: " + highest_time.ToString("F2");
 
         bouncingup = false;
     }
@@ -416,10 +416,10 @@ public class PlayerController : MonoBehaviour
             if (timer < highest_time || highest_time == 0.00f) {
                 high_time = timer;
                 highest_time = timer;
-                high_time_text.text = "<color=#00FF01FF>High Time: " + high_time.ToString("F2") + "</color>";
+                high_time_text.text = "<color=#00FF01FF>Best Time: " + high_time.ToString("F2") + "</color>";
                 PlayerPrefs.SetFloat("hightime", high_time);
             } else {
-                high_time_text.text = "High Time: " + highest_time.ToString("F2");
+                high_time_text.text = "Best Time: " + highest_time.ToString("F2");
             }
             timestarted = false;
             transform.position = new Vector3(-4.622f, 0.31f, -25f);

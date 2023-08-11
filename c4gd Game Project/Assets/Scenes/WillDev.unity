@@ -2758,7 +2758,6 @@ MonoBehaviour:
   lvl3tag: {fileID: 753332224}
   Ragaintext: {fileID: 1005693912}
   timer: 0
-  high_time: 0
   tutorialtimer: 0
   level1timer: 0
   level2timer: 0
@@ -2776,6 +2775,7 @@ MonoBehaviour:
   level3started: 0
   bouncingup: 0
   highest_time: 0
+  high_time: 0
 --- !u!65 &331437547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9175,7 +9175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'High Time: 0.00'
+  m_text: 'Best Time: 0.00'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
