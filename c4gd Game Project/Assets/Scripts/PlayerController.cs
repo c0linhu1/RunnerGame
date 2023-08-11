@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour
     public bool level2started;
     public bool level3started;
 
+    public bool bouncingup;
+
+    public float highest_time;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -153,6 +157,10 @@ public class PlayerController : MonoBehaviour
         level1timer = 0.00f;
         level2timer = 0.00f;
         level3timer = 0.00f;
+        highest_time = PlayerPrefs.GetFloat("hightime");  
+        high_time_text.text = "High Time: " + highest_time.ToString("F2");
+
+        bouncingup = false;
     }
 
     void Update()
@@ -166,19 +174,19 @@ public class PlayerController : MonoBehaviour
             timestarted = true;
         }
         
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround && timestarted)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) && isOnGround && timestarted && !bouncingup)
         {
             anim.SetBool("Running", true);
         }
-        else
+        else if (!bouncingup)
         {
             anim.SetBool("Running", false);
         }
-        if (isOnGround == true)
+        if (isOnGround == true && !bouncingup)
         {
             anim.SetBool("Falling", true);
         }
-        else if (isOnGround == false)
+        else if (isOnGround == false && !bouncingup)
         {
             anim.SetBool("Falling", false);
         }
@@ -223,6 +231,10 @@ public class PlayerController : MonoBehaviour
                 level1timer = 0.00f;
                 level2timer = 0.00f;
                 level3timer = 0.00f;
+                ttrltag.SetActive(true);
+                lvl1tag.SetActive(false);
+                lvl2tag.SetActive(false);
+                lvl3tag.SetActive(false);
             }
         }
         
@@ -237,7 +249,6 @@ public class PlayerController : MonoBehaviour
             firstjump = true;
             isOnGround = false;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            anim.SetTrigger("Jumping");
             jump.Play();
         }           
            else if (firstjump) {
@@ -262,6 +273,7 @@ public class PlayerController : MonoBehaviour
             wallslide = false;
             rb.useGravity = true;
             isOnGround = true;
+            bouncingup = false;
             // attachedRigidbody.useGravity = true;
             if (doublejump || firstjump) {
                 isOnGround = true;
@@ -278,6 +290,7 @@ public class PlayerController : MonoBehaviour
             // attachedRigidbody.useGravity = false;
             speed = speedonwall;
             rb.useGravity = false;
+            bouncingup = false;
         }
         else if (other.gameObject.CompareTag("BounceUp")) {
             boun.Play();
@@ -285,15 +298,18 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
             firstjump = false;
             doublejump = false;
+            bouncingup = true;
         }
         else if (other.gameObject.CompareTag("PushForward")) {
             pushF.Play();
             isPushingForward = true;
+            bouncingup = false;
             isOnGround = true;
             rb.AddForce(transform.forward * accelerationForce, ForceMode.Impulse);
         }
         else if (other.gameObject.CompareTag("RotateObstacle")) {
             isOnGround = true;
+            bouncingup = false;
         }
         else if (other.gameObject.CompareTag("DisappearPlane")) {
             hasCollided = true;
@@ -301,17 +317,19 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(DisappearAfterDelayA(other.gameObject));
             wallslide = false;
             rb.useGravity = true;
+            bouncingup = false;
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("CheckPoint")) {
             cp.Play();
             lastCheckPointPosition = transform.position;
+            bouncingup = false;
             isOnGround = true;
         }
         else if (other.gameObject.CompareTag("tptolevelone")) {
             tpAudio.Play();
-            transform.position = new Vector3(200f, 30f, 42f);
-            lastCheckPointPosition = new Vector3(200f, 30f, 42f);
+            transform.position = new Vector3(200f, -70f, 42f);
+            lastCheckPointPosition = new Vector3(200f, -70f, 42f);
             isOnGround = true;
             ttrltag.SetActive(false);
             lvl1tag.SetActive(true);
@@ -321,8 +339,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             tpAudio.Play();
-            transform.position = new Vector3(569.7f, 42f, 50f);
-            lastCheckPointPosition = new Vector3(569.7f, 42f, 50f);
+            transform.position = new Vector3(569.7f, 20f, 50f);
+            lastCheckPointPosition = new Vector3(569.7f, 20f, 50f);
             isOnGround = true;
             lvl1tag.SetActive(false);
             lvl2tag.SetActive(true);
@@ -332,8 +350,8 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("tptolevelthree")) {
             tpAudio.Play();
-            transform.position = new Vector3(1249.7f, 36f, 98.1f);
-            lastCheckPointPosition = new Vector3(1249.7f, 36f, 98.1f);
+            transform.position = new Vector3(1249.7f, -5f, 98.1f);
+            lastCheckPointPosition = new Vector3(1249.7f, -5f, 98.1f);
             isOnGround = true;
             lvl2tag.SetActive(false);
             lvl3tag.SetActive(true);
@@ -447,49 +465,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(2.0f); 
         other.gameObject.SetActive(false);
     }
-
-    // public void Options() {
-    //     allbuttoninactive();
-    // }
-
-    // public void Tutorial() {
-    //     allbuttoninactive();
-    // }
-
-    // public void levelone() {
-    //     allbuttoninactive();
-    // }
-
-    // public void leveltwo() {
-    //     allbuttoninactive();
-    // }
-
-    // public void levelthree() {
-    //     allbuttoninactive();
-    // }
-
-    // public void leveltutorial() {
-    //     titleText.SetActive(false);
-    //     StartButton.SetActive(false);
-    //     // Time.timeScale = 1;
-    // }
-
-
-    // public void allbuttoninactive() {
-    //     optionButton.SetActive(false);
-    //     Button1.SetActive(false);
-    //     Button2.SetActive(false);
-    //     Button3.SetActive(false);
-    //     tutorialButton.SetActive(false);
-    // }
-
-    // public void allbuttonactive() {
-    //     optionButton.SetActive(true);
-    //     Button1.SetActive(true);
-    //     Button2.SetActive(true);
-    //     Button3.SetActive(true);
-    //     tutorialButton.SetActive(true);
-    // }
 
     private void RespawnAtLastCheckPoint() {
         Vector3 respawnPosition = lastCheckPointPosition;
