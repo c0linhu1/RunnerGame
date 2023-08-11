@@ -101,6 +101,11 @@ public class PlayerController : MonoBehaviour
 
     public bool bouncingup;
 
+    public bool tutorialfinished;
+    public bool level1finished;
+    public bool level2finished;
+    public bool level3finished;
+
     public float highest_time; // this stores the highest time in playerprefs
     public float high_time;
 
@@ -162,6 +167,11 @@ public class PlayerController : MonoBehaviour
         high_time_text.text = "Best Time: " + highest_time.ToString("F2");
 
         bouncingup = false;
+
+        tutorialfinished = false;
+        level1finished = false;
+        level2finished = false;
+        level3finished = false;
     }
 
     void Update()
@@ -240,6 +250,22 @@ public class PlayerController : MonoBehaviour
                 {
                     plane.SetActive(true);
                 }   
+                if (!tutorialfinished) {
+                    tutorialtimer = 0.00f;
+                    tutorialtime_text.text = "Tutorial: 0.00";
+                }
+                if (!level1finished) {
+                    level1timer = 0.00f;
+                    level1time_text.text = "Level 1: 0.00";
+                }
+                if (!level2finished) {
+                    level2timer = 0.00f;
+                    level2time_text.text = "Level 2: 0.00";
+                }
+                if (!level3finished) {
+                    level3timer = 0.00f;
+                    level3time_text.text = "Level 3: 0.00";
+                }                
             }
         }
         
@@ -341,6 +367,7 @@ public class PlayerController : MonoBehaviour
             tutorialstarted = false;
             level1started = true;
             level1timer = 0.00f;
+            tutorialfinished = true;
         }
         else if (other.gameObject.CompareTag("tptoleveltwo")) {
             tpAudio.Play();
@@ -352,6 +379,7 @@ public class PlayerController : MonoBehaviour
             level1started = false;
             level2started = true;
             level2timer = 0.00f;
+            level1finished = true;
         }
         else if (other.gameObject.CompareTag("tptolevelthree")) {
             tpAudio.Play();
@@ -363,6 +391,7 @@ public class PlayerController : MonoBehaviour
             level2started = false;
             level3started = true;
             level3timer = 0.00f;
+            level2finished = true;
         }
         else if (other.gameObject.CompareTag("platform")) {
             isOnGround = true;
@@ -438,6 +467,7 @@ public class PlayerController : MonoBehaviour
             level1timer = 0.00f;
             level2timer = 0.00f;
             level3timer = 0.00f;
+            level3finished = true;
         }
     }
 
