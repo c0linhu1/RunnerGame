@@ -236,6 +236,10 @@ public class PlayerController : MonoBehaviour
                 lvl1tag.SetActive(false);
                 lvl2tag.SetActive(false);
                 lvl3tag.SetActive(false);
+                foreach (GameObject plane in displanes)
+                {
+                    plane.SetActive(true);
+                }   
             }
         }
         
