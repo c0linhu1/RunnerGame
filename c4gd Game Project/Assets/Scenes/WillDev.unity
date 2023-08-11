@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 25615900}
   m_Layer: 0
   m_Name: Rotate Plane (2)
-  m_TagString: platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2775,6 +2775,7 @@ MonoBehaviour:
   level2started: 0
   level3started: 0
   bouncingup: 0
+  highest_time: 0
 --- !u!65 &331437547
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3769,7 +3770,7 @@ GameObject:
   - component: {fileID: 347877640}
   m_Layer: 0
   m_Name: RotatePlanePivotPoint
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7660,7 +7661,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644858033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 76.8, z: 251.83002}
+  m_LocalPosition: {x: 1.05, y: 76.8, z: 251.83002}
   m_LocalScale: {x: 4, y: 0.099999994, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14723,7 +14724,7 @@ GameObject:
   - component: {fileID: 1449952934}
   m_Layer: 0
   m_Name: Rotate Plane (3)
-  m_TagString: platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15050,7 +15051,7 @@ GameObject:
   - component: {fileID: 1492351395}
   m_Layer: 0
   m_Name: RotatePlanePivotPoint
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15212,7 +15213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519030786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1999025, y: 76.8, z: 246.8}
+  m_LocalPosition: {x: 1.045, y: 76.8, z: 246.89}
   m_LocalScale: {x: 4, y: 0.099999994, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17511,7 +17512,7 @@ PrefabInstance:
     - target: {fileID: 3574851494187783155, guid: 823cea5bda2afb245a0b6b5dcb1c5b22,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 89.9
+      value: 89.96
       objectReference: {fileID: 0}
     - target: {fileID: 3574851494187783155, guid: 823cea5bda2afb245a0b6b5dcb1c5b22,
         type: 3}
@@ -17857,7 +17858,7 @@ GameObject:
   - component: {fileID: 1810142770}
   m_Layer: 0
   m_Name: Rotate Plane
-  m_TagString: platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18152,7 +18153,7 @@ GameObject:
   - component: {fileID: 1865552547}
   m_Layer: 0
   m_Name: Rotate Plane (1)
-  m_TagString: platform
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18234,7 +18235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873057143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.95, y: 76.8, z: 246.8}
+  m_LocalPosition: {x: -2.95, y: 76.8, z: 246.89}
   m_LocalScale: {x: 4, y: 0.099999994, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []

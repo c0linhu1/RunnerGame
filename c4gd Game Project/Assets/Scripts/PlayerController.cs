@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Ragaintext;
 
     public float timer;
-    public float high_time;
+    
 
     public float tutorialtimer;
     public float level1timer;
@@ -101,7 +101,8 @@ public class PlayerController : MonoBehaviour
 
     public bool bouncingup;
 
-    public float highest_time;
+    public float highest_time; // this stores the highest time in playerprefs
+    public float high_time;
 
     void Start()
     {
@@ -412,10 +413,13 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("finalline")) {
             timestarted = false;
-            if (timer < high_time || high_time == 0.00f) {
+            if (timer < highest_time || highest_time == 0.00f) {
                 high_time = timer;
+                highest_time = timer;
                 high_time_text.text = "<color=#00FF01FF>High Time: " + high_time.ToString("F2") + "</color>";
                 PlayerPrefs.SetFloat("hightime", high_time);
+            } else {
+                high_time_text.text = "High Time: " + highest_time.ToString("F2");
             }
             timestarted = false;
             transform.position = new Vector3(-4.622f, 0.31f, -25f);
